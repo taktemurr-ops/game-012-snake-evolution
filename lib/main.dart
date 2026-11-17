@@ -19,12 +19,14 @@ class SnakeGame {
   SnakeDirection direction = SnakeDirection.right;
   int score = 0;
   bool gameOver = false;
+  bool _turnedThisTick = false;
 
   void reset() {
     snake = [Point(width ~/ 2, height ~/ 2), Point(width ~/ 2 - 1, height ~/ 2)];
     direction = SnakeDirection.right;
     score = 0;
     gameOver = false;
+    _turnedThisTick = false;
     placeFood();
   }
 
@@ -42,13 +44,17 @@ class SnakeGame {
   }
 
   void turn(SnakeDirection next) {
-    if (gameOver) return;
+    if (gameOver || _turnedThisTick || next == direction) return;
     final opposite = (direction.index + 2) % 4;
-    if (next.index != opposite) direction = next;
+    if (next.index != opposite) {
+      direction = next;
+      _turnedThisTick = true;
+    }
   }
 
   void tick() {
     if (gameOver) return;
+    _turnedThisTick = false;
     final head = snake.first;
     final delta = switch (direction) {
       SnakeDirection.up => const Point(0, -1),
