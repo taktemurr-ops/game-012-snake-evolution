@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:game_012_snake_evolution/core/arcade.dart';
-import 'package:game_012_snake_evolution/core/level_plan.dart';
+import 'package:studio_core/core/arcade.dart';
+import 'package:studio_core/core/level_plan.dart';
 import 'package:game_012_snake_evolution/game/rules.dart';
 import 'package:game_012_snake_evolution/game/snake_engine.dart';
 
